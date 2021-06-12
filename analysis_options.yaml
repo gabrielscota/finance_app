@@ -11,4 +11,5 @@ linter:
     prefer_relative_imports: true
     prefer_single_quotes: true
     sort_constructors_first: false
+    sort_pub_dependencies: false
     valid_regexps: true
