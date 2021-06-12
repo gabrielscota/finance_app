@@ -28,19 +28,43 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool isDarkModeEnabled = false;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedTheme(
       curve: Curves.easeInOut,
       data: Theme.of(context),
+      duration: Duration(milliseconds: 500),
       child: Scaffold(
-        body: Center(
-          child: Text(
-            'Finance App',
-            style: Theme.of(context).textTheme.headline4,
+        body: SizedBox.expand(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Finance App',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              Switch(
+                value: isDarkModeEnabled,
+                onChanged: (value) {
+                  if (value) {
+                    Get.changeThemeMode(ThemeMode.dark);
+                  } else {
+                    Get.changeThemeMode(ThemeMode.light);
+                  }
+                  isDarkModeEnabled = !isDarkModeEnabled;
+                },
+              ),
+            ],
           ),
         ),
       ),
