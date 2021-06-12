@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../components/components.dart';
+import '../../mixins/mixins.dart';
 import '../pages.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,12 +17,14 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with NavigationManager, SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
   @override
   void initState() {
     _controller = AnimationController(vsync: this);
+
+    handleNavigationWithArgs(widget.presenter.navigateToWithArgsStream);
 
     super.initState();
   }
