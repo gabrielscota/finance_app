@@ -19,6 +19,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.0
   lint: ^1.5.3
 
 flutter:
@@ -27,3 +28,8 @@ flutter:
   assets:
     - lib/ui/assets/animations/
     - lib/ui/assets/icons/
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "lib/ui/assets/launcher_icon/icon.png"
