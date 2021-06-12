@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorKey: _globalKey,
-      title: 'Finance App',
+      title: 'Fi-Nance App',
       darkTheme: AppTheme.darkThemeData,
       defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
@@ -82,12 +82,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Finance App',
+                'Fi-Nance App',
                 style: Theme.of(context).textTheme.headline4,
               ),
               const SizedBox(height: 32.0),
               ElevatedButton(
-                onPressed: () => Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark),
+                onPressed: () => Get.changeTheme(Get.isDarkMode ? AppTheme.lightThemeData : AppTheme.darkThemeData),
                 child: const Text('Change theme'),
               ),
               const SizedBox(height: 12.0),
