@@ -20,7 +20,7 @@ mixin AppTheme {
           onSurface: colorScheme.onSurface,
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
           primary: colorScheme.primary,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         ),
       ),
       canvasColor: colorScheme.background,
