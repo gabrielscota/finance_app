@@ -13,6 +13,16 @@ mixin AppTheme {
 
   static ThemeData themeData(ColorScheme colorScheme, Color focusColor) {
     return ThemeData(
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0.0,
+          onPrimary: colorScheme.onPrimary,
+          onSurface: colorScheme.onSurface,
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+          primary: colorScheme.primary,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+        ),
+      ),
       canvasColor: colorScheme.background,
       colorScheme: colorScheme,
       errorColor: colorScheme.error,
