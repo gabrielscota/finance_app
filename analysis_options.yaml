@@ -1,0 +1,14 @@
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    always_declare_return_types: true
+    camel_case_extensions: true
+    camel_case_types: true
+    curly_braces_in_flow_control_structures: true
+    directives_ordering: true
+    lines_longer_than_80_chars: false
+    prefer_relative_imports: true
+    prefer_single_quotes: true
+    sort_constructors_first: true
+    valid_regexps: true

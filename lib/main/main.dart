@@ -16,12 +16,11 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightThemeData,
-      themeMode: ThemeMode.system,
       initialRoute: '/',
       getPages: [
         GetPage(
           name: '/',
-          page: () => HomePage(),
+          page: () => const HomePage(),
         ),
       ],
     );
@@ -43,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     return AnimatedTheme(
       curve: Curves.easeInOut,
       data: Theme.of(context),
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 300),
       child: Scaffold(
         body: SizedBox.expand(
           child: Column(

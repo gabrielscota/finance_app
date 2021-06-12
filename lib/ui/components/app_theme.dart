@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppTheme {
+mixin AppTheme {
   static const _lightFillColor = Color(0xFF303030);
   static const _darkFillColor = Color(0xFFFCFCFC);
 
@@ -20,7 +20,7 @@ class AppTheme {
       fontFamily: 'Poppins',
       highlightColor: Colors.transparent,
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
-      primaryColor: Color(0xFF31844A),
+      primaryColor: const Color(0xFF31844A),
       scaffoldBackgroundColor: colorScheme.background,
       textTheme: _textTheme,
     );
