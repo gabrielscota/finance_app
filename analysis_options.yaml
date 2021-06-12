@@ -10,5 +10,5 @@ linter:
     lines_longer_than_80_chars: false
     prefer_relative_imports: true
     prefer_single_quotes: true
-    sort_constructors_first: true
+    sort_constructors_first: false
     valid_regexps: true
