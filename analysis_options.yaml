@@ -8,6 +8,7 @@ linter:
     curly_braces_in_flow_control_structures: true
     directives_ordering: true
     lines_longer_than_80_chars: false
+    prefer_constructors_over_static_methods: false
     prefer_relative_imports: true
     prefer_single_quotes: true
     sort_constructors_first: false
