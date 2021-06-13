@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../components/components.dart';
 import '../../mixins/mixins.dart';
@@ -17,7 +15,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with NavigationManager, SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with NavigationManager, SingleTickerProviderStateMixin, SystemNavigationUIOverlays {
   late final AnimationController _controller;
 
   @override
@@ -47,9 +46,7 @@ class _HomePageState extends State<HomePage> with NavigationManager, SingleTicke
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Theme.of(context).primaryColor,
-    ));
+    statusBarIconBrightness(context);
 
     return AnimatedTheme(
       curve: Curves.easeIn,
@@ -67,32 +64,6 @@ class _HomePageState extends State<HomePage> with NavigationManager, SingleTicke
               ElevatedButton(
                 onPressed: () => Get.changeTheme(Get.isDarkMode ? AppTheme.lightThemeData : AppTheme.darkThemeData),
                 child: const Text('Change theme'),
-              ),
-              const SizedBox(height: 12.0),
-              SizedBox(
-                height: 96,
-                width: 96,
-                child: Material(
-                  color: Theme.of(context).primaryColor,
-                  shape: SquircleBorder(
-                    side: BorderSide(color: Theme.of(context).primaryColor, width: 3.0),
-                  ),
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Lottie.asset(
-                      'lib/ui/assets/animations/404.json',
-                      controller: _controller,
-                      fit: BoxFit.fitWidth,
-                      onLoaded: (composition) {
-                        _controller
-                          ..duration = composition.duration
-                          ..forward()
-                          ..repeat();
-                      },
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
