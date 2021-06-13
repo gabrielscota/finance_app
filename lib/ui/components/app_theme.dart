@@ -18,13 +18,15 @@ mixin AppTheme {
           elevation: 0.0,
           onPrimary: colorScheme.onPrimary,
           onSurface: colorScheme.onSurface,
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
           primary: colorScheme.primary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          textStyle: _textTheme.subtitle1?.copyWith(color: colorScheme.onPrimary),
         ),
       ),
       canvasColor: colorScheme.background,
       colorScheme: colorScheme,
+      dividerColor: colorScheme.onBackground.withAlpha(40),
       errorColor: colorScheme.error,
       focusColor: focusColor,
       fontFamily: 'Poppins',
@@ -65,7 +67,7 @@ mixin AppTheme {
     primaryVariant: Color(0xFF63B476),
     secondary: Color(0xFF367E9B),
     secondaryVariant: Color(0xFF6AADCC),
-    surface: Color(0xFF303030),
+    surface: Color(0xFF535353),
   );
 
   static const _light = FontWeight.w300;
