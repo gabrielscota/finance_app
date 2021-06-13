@@ -4,6 +4,7 @@ import '../../presentation/protocols/protocols.dart';
 import '../protocols/protocols.dart';
 
 class EmailValidation extends Equatable implements FieldValidation {
+  @override
   final String field;
 
   const EmailValidation({required this.field});
