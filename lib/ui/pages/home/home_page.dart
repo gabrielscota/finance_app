@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    statusBarIconBrightness(context);
+    statusBarIconBrightness(context, systemNavigationBarColor: Theme.of(context).colorScheme.primary);
 
     return AnimatedTheme(
       curve: Curves.easeIn,
