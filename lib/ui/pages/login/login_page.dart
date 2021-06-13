@@ -53,10 +53,6 @@ class _LoginPageState extends State<LoginPage> with NavigationManager {
                   ),
                 );
               }
-
-              if (isAuthenticated) {
-                widget.presenter.goToHomePage();
-              }
             },
             child: const Text('Entrar'),
           ),
