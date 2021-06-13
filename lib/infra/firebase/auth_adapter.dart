@@ -9,10 +9,7 @@ class AuthAdapter extends FirebaseAuthentication {
   AuthAdapter({required this.firebaseAuth});
 
   @override
-  Future<UserCredential> authWithEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
+  Future<UserCredential> authWithEmailAndPassword({required String email, required String password}) async {
     try {
       final userCredential = await firebaseAuth.signInWithEmailAndPassword(
         email: email,
@@ -20,7 +17,11 @@ class AuthAdapter extends FirebaseAuthentication {
       );
       return userCredential;
     } on FirebaseAuthException catch (error) {
-      if (error.code == FirebaseAuthError.userNotFound.code) {
+      if (error.code == FirebaseAuthError.invalidEmail.code) {
+        throw FirebaseAuthError.invalidEmail;
+      } else if (error.code == FirebaseAuthError.userDisabled.code) {
+        throw FirebaseAuthError.userDisabled;
+      } else if (error.code == FirebaseAuthError.userNotFound.code) {
         throw FirebaseAuthError.userNotFound;
       } else if (error.code == FirebaseAuthError.wrongPassword.code) {
         throw FirebaseAuthError.wrongPassword;
@@ -31,28 +32,27 @@ class AuthAdapter extends FirebaseAuthentication {
   }
 
   @override
-  Future<UserCredential> signInWithGoogle() async {
+  Future<UserCredential?> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount googleUser = (await GoogleSignIn().signIn())!;
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      if (googleUser != null) {
+        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+        final OAuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
 
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+        return await FirebaseAuth.instance.signInWithCredential(credential);
+      }
     } catch (error) {
       throw FirebaseAuthError.internalError;
     }
   }
 
   @override
-  Future<UserCredential> signUpWithEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
+  Future<UserCredential> signUpWithEmailAndPassword({required String email, required String password}) async {
     try {
       final userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -60,10 +60,12 @@ class AuthAdapter extends FirebaseAuthentication {
       );
       return userCredential;
     } on FirebaseAuthException catch (error) {
-      if (error.code == FirebaseAuthError.userNotFound.code) {
-        throw FirebaseAuthError.userNotFound;
-      } else if (error.code == FirebaseAuthError.wrongPassword.code) {
-        throw FirebaseAuthError.wrongPassword;
+      if (error.code == FirebaseAuthError.emailAlreadyInUse.code) {
+        throw FirebaseAuthError.emailAlreadyInUse;
+      } else if (error.code == FirebaseAuthError.invalidEmail.code) {
+        throw FirebaseAuthError.invalidEmail;
+      } else if (error.code == FirebaseAuthError.weakPassword.code) {
+        throw FirebaseAuthError.weakPassword;
       } else {
         throw FirebaseAuthError.internalError;
       }
