@@ -21,9 +21,14 @@ class GetxLoginPresenter extends GetxController
 
   final Rx<UIError> _emailError = Rx<UIError>(UIError.noError);
   final Rx<UIError> _passwordError = Rx<UIError>(UIError.noError);
+  final Rx<bool> _isLoadingGoogleAuthentication = false.obs;
 
   Stream<UIError?> get emailErrorStream => _emailError.stream;
   Stream<UIError?> get passwordErrorStream => _passwordError.stream;
+  Stream<bool?> get isLoadingGoogleAuthenticationStream => _isLoadingGoogleAuthentication.stream;
+
+  set isLoadingGoogleAuthentication(bool value) => _isLoadingGoogleAuthentication.subject.add(value);
+  bool get isLoadingGoogleAuthentication => _isLoadingGoogleAuthentication.value;
 
   GetxLoginPresenter({
     required this.validation,
@@ -93,9 +98,9 @@ class GetxLoginPresenter extends GetxController
   Future<void> authWithGoogle() async {
     try {
       mainError = UIError.noError;
-      isLoading = true;
+      isLoadingGoogleAuthentication = true;
       await Future.delayed(const Duration(seconds: 2));
-      final userUID = await authenticationWithGoogle.authWithGoogle(
+      final String userUID = await authenticationWithGoogle.authWithGoogle(
         params: GoogleSignUpParams(
           user: UserEntity(
             uid: '',
@@ -109,12 +114,14 @@ class GetxLoginPresenter extends GetxController
           ),
         ),
       );
-      await saveCurrentUser.save(userUID: userUID);
-      isLoading = false;
-      navigateToWithArgs = const NavigationArguments(route: '/home');
+      if (userUID != '') {
+        await saveCurrentUser.save(userUID: userUID);
+        isLoadingGoogleAuthentication = false;
+        navigateToWithArgs = const NavigationArguments(route: '/home');
+      }
     } on DomainError {
       mainError = UIError.unexpected;
-      isLoading = false;
+      isLoadingGoogleAuthentication = false;
     }
   }
 

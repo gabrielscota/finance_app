@@ -8,9 +8,11 @@ abstract class LoginPresenter {
   Stream<UIError?> get mainErrorStream;
   Stream<bool?> get isFormValidStream;
   Stream<bool?> get isLoadingStream;
+  Stream<bool?> get isLoadingGoogleAuthenticationStream;
 
   void validateEmail(String email);
   void validatePassword(String password);
+
   Future<void> auth();
   Future<void> authWithGoogle();
   void goToSignUp();
