@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import '../entities/entities.dart';
 
 abstract class UserGoogleSignIn {
-  Future<String?> authWithGoogle({required GoogleSignUpParams params});
+  Future<String> authWithGoogle({required GoogleSignUpParams params});
 }
 
 class GoogleSignUpParams extends Equatable {
