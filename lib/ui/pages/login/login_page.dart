@@ -16,8 +16,20 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with KeyboardManager, NavigationManager, SystemNavigationUIOverlays, UIErrorManager {
+  late ScrollController _scrollController;
+  late FocusNode _passwordInputfocusNode;
+
   @override
   void initState() {
+    _scrollController = ScrollController();
+    _passwordInputfocusNode = FocusNode()
+      ..addListener(() async {
+        if (_passwordInputfocusNode.hasPrimaryFocus) {
+          await Future.delayed(const Duration(milliseconds: 100));
+          _scrollController.animateTo(140, duration: const Duration(milliseconds: 250), curve: Curves.easeIn);
+        }
+      });
+
     handleNavigationWithArgs(widget.presenter.navigateToWithArgsStream);
     handleMainError(context, widget.presenter.mainErrorStream);
 
@@ -29,6 +41,7 @@ class _LoginPageState extends State<LoginPage>
     statusBarIconBrightness(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -37,10 +50,13 @@ class _LoginPageState extends State<LoginPage>
               child: Provider(
                 create: (_) => widget.presenter,
                 child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  controller: _scrollController,
                   child: Container(
                     height: constraints.maxHeight,
                     width: constraints.maxWidth,
                     padding: const EdgeInsets.all(32.0),
+                    margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -49,6 +65,17 @@ class _LoginPageState extends State<LoginPage>
                             const AppTitle(),
                             GoogleLoginButton(presenter: widget.presenter),
                             const DividerWithOr(),
+                            UserInput(
+                              presenter: widget.presenter,
+                              scrollController: _scrollController,
+                              passwordInputfocusNode: _passwordInputfocusNode,
+                            ),
+                            PasswordInput(
+                              presenter: widget.presenter,
+                              scrollController: _scrollController,
+                              focusNode: _passwordInputfocusNode,
+                            ),
+                            LoginButton(presenter: widget.presenter),
                           ],
                         ),
                         const GoToSignUp(),

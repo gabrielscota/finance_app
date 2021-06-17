@@ -14,11 +14,14 @@ class GoToSignUp extends StatelessWidget {
         children: [
           Text(
             R.string.dontHaveAccount,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                  color: Theme.of(context).colorScheme.onBackground.withAlpha(200),
+                ),
           ),
           const SizedBox(width: 4.0),
           InkWell(
             onTap: () {},
+            splashColor: Colors.transparent,
             child: Text(
               R.string.addAccount,
               style: Theme.of(context).textTheme.bodyText1?.copyWith(

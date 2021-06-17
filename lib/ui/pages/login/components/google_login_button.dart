@@ -31,7 +31,7 @@ class GoogleLoginButton extends StatelessWidget {
             Text(
               'Entrar com o Google',
               style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: Theme.of(context).colorScheme.onSurface.withAlpha(200),
                   ),
             ),
           ],
