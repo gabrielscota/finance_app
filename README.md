@@ -8,7 +8,7 @@ Flutter SDK version: 2.2.2<br>
 Environment SDK: ">=2.13.0 <3.0.0"
 
 ```dart
-flutter create finance_app
+flutter create finance
 ```
 
 ## Configurações do linter
@@ -78,7 +78,7 @@ As permissões que serão necessárias pelo app também são alteras no manifest
 `android/app/src/main/AndroidManifest.xml`
 ```
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.finance_app">
+    package="com.example.finance">
     
     <uses-permission android:name="android.permission.INTERNET" />
 
