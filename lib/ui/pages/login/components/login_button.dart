@@ -38,8 +38,8 @@ class LoginButton extends StatelessWidget with KeyboardManager {
                               height: 32.0,
                               child: LottieBuilder.asset(
                                 Get.isDarkMode
-                                    ? 'lib/ui/assets/animations/loading_light.json'
-                                    : 'lib/ui/assets/animations/loading_dark.json',
+                                    ? 'lib/ui/assets/animations/loading_dark.json'
+                                    : 'lib/ui/assets/animations/loading_light.json',
                                 fit: BoxFit.fitHeight,
                               ),
                             );
