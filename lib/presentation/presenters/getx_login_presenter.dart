@@ -91,6 +91,7 @@ class GetxLoginPresenter extends GetxController
           mainError = UIError.unexpected;
           break;
       }
+    } finally {
       isLoading = false;
     }
   }
