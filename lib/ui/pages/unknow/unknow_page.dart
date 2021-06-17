@@ -44,7 +44,7 @@ class _UnknowPageState extends State<UnknowPage> with SingleTickerProviderStateM
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 48.0),
               child: Lottie.asset(
-                'lib/ui/assets/animations/404_light.json',
+                Get.isDarkMode ? 'lib/ui/assets/animations/404_dark.json' : 'lib/ui/assets/animations/404_light.json',
                 controller: _controller,
                 fit: BoxFit.fitWidth,
                 onLoaded: (composition) {
