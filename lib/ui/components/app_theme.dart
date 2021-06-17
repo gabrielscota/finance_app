@@ -13,26 +13,19 @@ mixin AppTheme {
 
   static ThemeData themeData(ColorScheme colorScheme, Color focusColor) {
     return ThemeData(
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          elevation: 0.0,
-          onPrimary: colorScheme.onPrimary,
-          onSurface: colorScheme.onSurface,
-          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-          primary: colorScheme.primary,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          textStyle: _textTheme.subtitle1?.copyWith(color: colorScheme.onPrimary),
-        ),
-      ),
       canvasColor: colorScheme.background,
       colorScheme: colorScheme,
+      disabledColor: colorScheme.onBackground.withAlpha(40),
       dividerColor: colorScheme.onBackground.withAlpha(40),
+      elevatedButtonTheme: elevatedButtonThemeData(colorScheme),
       errorColor: colorScheme.error,
       focusColor: focusColor,
       fontFamily: 'Poppins',
       highlightColor: Colors.transparent,
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
-      primaryColor: const Color(0xFF31844A),
+      inputDecorationTheme: inputDecorationTheme(colorScheme),
+      primaryColor: colorScheme.primary,
+      primaryColorLight: colorScheme.primaryVariant,
       scaffoldBackgroundColor: colorScheme.background,
       textTheme: _textTheme,
     );
@@ -67,8 +60,61 @@ mixin AppTheme {
     primaryVariant: Color(0xFF63B476),
     secondary: Color(0xFF367E9B),
     secondaryVariant: Color(0xFF6AADCC),
-    surface: Color(0xFF535353),
+    surface: Color(0xFF383838),
   );
+
+  static ElevatedButtonThemeData elevatedButtonThemeData(ColorScheme colorScheme) {
+    return ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        elevation: 0.0,
+        onPrimary: colorScheme.onPrimary,
+        onSurface: colorScheme.onSurface,
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+        primary: colorScheme.primary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        textStyle: _textTheme.subtitle1?.copyWith(color: colorScheme.onPrimary),
+      ),
+    );
+  }
+
+  static InputDecorationTheme inputDecorationTheme(ColorScheme colorScheme) {
+    return InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: BorderSide(
+          color: colorScheme.onBackground.withAlpha(80),
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: BorderSide(
+          color: colorScheme.error,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: BorderSide(
+          color: colorScheme.onBackground.withAlpha(200),
+        ),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: BorderSide(
+          color: colorScheme.onBackground.withAlpha(40),
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: BorderSide(
+          color: colorScheme.error,
+        ),
+      ),
+      labelStyle: _textTheme.bodyText1,
+      hintStyle: _textTheme.subtitle1?.copyWith(
+        color: colorScheme.onBackground.withAlpha(40),
+      ),
+    );
+  }
 
   static const _light = FontWeight.w300;
   static const _regular = FontWeight.w400;
