@@ -1,6 +1,6 @@
 import '../../domain/entities/entities.dart';
 import '../firebase/firebase.dart';
-import './models.dart';
+import 'models.dart';
 
 class RemoteUserModel {
   final String uid;

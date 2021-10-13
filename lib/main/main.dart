@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../ui/components/components.dart';
-import './factories/factories.dart';
+import 'factories/factories.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +15,8 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final GlobalKey<NavigatorState> _globalKey = GlobalKey<NavigatorState>();
 
+  MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -22,10 +24,11 @@ class MyApp extends StatelessWidget {
       title: 'Fi-Nance',
       darkTheme: AppTheme.darkThemeData,
       defaultTransition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 400),
       debugShowCheckedModeBanner: false,
       enableLog: true,
       theme: AppTheme.lightThemeData,
-      initialRoute: '/',
+      initialRoute: '/home',
       getPages: [
         GetPage(
           name: '/',

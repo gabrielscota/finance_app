@@ -8,7 +8,7 @@ import '../pages.dart';
 class UnknowPage extends StatefulWidget {
   final UnknowPresenter presenter;
 
-  const UnknowPage({required this.presenter});
+  const UnknowPage({Key? key, required this.presenter}) : super(key: key);
 
   @override
   _UnknowPageState createState() => _UnknowPageState();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:local_auth/auth_strings.dart';
-import 'package:local_auth/local_auth.dart';
+import 'package:flutter_local_auth_invisible/auth_strings.dart';
+import 'package:flutter_local_auth_invisible/flutter_local_auth_invisible.dart';
 
 class BiometricButton extends StatelessWidget {
   const BiometricButton({Key? key}) : super(key: key);
@@ -10,24 +10,22 @@ class BiometricButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () async {
         final localAuthentication = LocalAuthentication();
-        final bool isBiometricSupported = await localAuthentication.isDeviceSupported();
         final bool canCheckBiometrics = await localAuthentication.canCheckBiometrics;
 
         bool isAuthenticated = false;
 
-        if (isBiometricSupported && canCheckBiometrics) {
-          isAuthenticated = await localAuthentication.authenticate(
+        if (canCheckBiometrics) {
+          isAuthenticated = await localAuthentication.authenticateWithBiometrics(
             localizedReason: ' ',
-            biometricOnly: true,
             stickyAuth: true,
-            androidAuthStrings: const AndroidAuthMessages(
-              biometricHint: '',
-              biometricRequiredTitle: 'Biometria é obrigatória',
-              biometricNotRecognized: 'Não foi possível reconhecer a digital, tente novamente!',
-              biometricSuccess: 'Digital reconhecida com sucesso!',
-              cancelButton: 'Senha',
-              signInTitle: 'Autenticação',
-            ),
+            // androidAuthStrings: const AndroidAuthMessages(
+            //   biometricHint: '',
+            //   biometricRequiredTitle: 'Biometria é obrigatória',
+            //   biometricNotRecognized: 'Não foi possível reconhecer a digital, tente novamente!',
+            //   biometricSuccess: 'Digital reconhecida com sucesso!',
+            //   cancelButton: 'Senha',
+            //   signInTitle: 'Autenticação',
+            // ),
             iOSAuthStrings: const IOSAuthMessages(
               cancelButton: 'Senha',
             ),

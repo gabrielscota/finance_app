@@ -69,7 +69,7 @@ mixin AppTheme {
         elevation: 0.0,
         onPrimary: colorScheme.onPrimary,
         onSurface: colorScheme.onSurface,
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 32.0),
         primary: colorScheme.primary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         textStyle: _textTheme.subtitle1?.copyWith(color: colorScheme.onPrimary),

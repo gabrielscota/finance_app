@@ -5,6 +5,10 @@ mixin NavigationManager on GetxController {
   final _navigateToWithArgs = Rx<NavigationArguments>(const NavigationArguments(route: ''));
   Stream<NavigationArguments?> get navigateToWithArgsStream => _navigateToWithArgs.stream;
   set navigateToWithArgs(NavigationArguments value) => _navigateToWithArgs.subject.add(value);
+
+  final _navigateToWithArgsAndClearStack = Rx<NavigationArguments>(const NavigationArguments(route: ''));
+  Stream<NavigationArguments?> get navigateToWithArgsAndClearStackStream => _navigateToWithArgsAndClearStack.stream;
+  set navigateToWithArgsAndClearStack(NavigationArguments value) => _navigateToWithArgsAndClearStack.subject.add(value);
 }
 
 class NavigationArguments extends Equatable {

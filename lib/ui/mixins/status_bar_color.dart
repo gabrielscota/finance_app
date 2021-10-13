@@ -8,7 +8,7 @@ mixin SystemNavigationUIOverlays {
       statusBarColor: Theme.of(context).colorScheme.background,
       statusBarBrightness: Theme.of(context).brightness,
       statusBarIconBrightness: Get.isDarkMode ? Brightness.light : Brightness.dark,
-      systemNavigationBarColor: systemNavigationBarColor != Colors.transparent
+      systemNavigationBarColor: systemNavigationBarColor.value != Colors.transparent.value
           ? systemNavigationBarColor
           : Theme.of(context).colorScheme.background,
       systemNavigationBarIconBrightness: Get.isDarkMode ? Brightness.light : Brightness.dark,

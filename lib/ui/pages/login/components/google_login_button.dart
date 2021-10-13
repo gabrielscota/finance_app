@@ -6,7 +6,7 @@ import '../../pages.dart';
 class GoogleLoginButton extends StatelessWidget {
   final LoginPresenter presenter;
 
-  const GoogleLoginButton({required this.presenter});
+  const GoogleLoginButton({Key? key, required this.presenter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

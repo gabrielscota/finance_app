@@ -3,6 +3,7 @@ import '../../helpers/helpers.dart';
 
 abstract class LoginPresenter {
   Stream<NavigationArguments?> get navigateToWithArgsStream;
+  Stream<NavigationArguments?> get navigateToHomeWithArgsStream;
   Stream<UIError?> get emailErrorStream;
   Stream<UIError?> get passwordErrorStream;
   Stream<UIError?> get mainErrorStream;
@@ -15,5 +16,7 @@ abstract class LoginPresenter {
 
   Future<void> auth();
   Future<void> authWithGoogle();
-  void goToSignUp();
+
+  void goToSignUpPage();
+  void goToHomePage();
 }

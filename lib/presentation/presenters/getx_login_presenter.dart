@@ -22,13 +22,15 @@ class GetxLoginPresenter extends GetxController
   final Rx<UIError> _emailError = Rx<UIError>(UIError.noError);
   final Rx<UIError> _passwordError = Rx<UIError>(UIError.noError);
   final Rx<bool> _isLoadingGoogleAuthentication = false.obs;
+  final _navigateToHomeWithArgs = Rx<NavigationArguments>(const NavigationArguments(route: ''));
 
   Stream<UIError?> get emailErrorStream => _emailError.stream;
   Stream<UIError?> get passwordErrorStream => _passwordError.stream;
   Stream<bool?> get isLoadingGoogleAuthenticationStream => _isLoadingGoogleAuthentication.stream;
+  Stream<NavigationArguments?> get navigateToHomeWithArgsStream => _navigateToHomeWithArgs.stream;
+  bool get isLoadingGoogleAuthentication => _isLoadingGoogleAuthentication.value;
 
   set isLoadingGoogleAuthentication(bool value) => _isLoadingGoogleAuthentication.subject.add(value);
-  bool get isLoadingGoogleAuthentication => _isLoadingGoogleAuthentication.value;
 
   GetxLoginPresenter({
     required this.validation,
@@ -126,7 +128,11 @@ class GetxLoginPresenter extends GetxController
     }
   }
 
-  void goToSignUp() {
+  void goToSignUpPage() {
     navigateToWithArgs = const NavigationArguments(route: '/signup');
+  }
+
+  void goToHomePage() {
+    _navigateToHomeWithArgs.subject.add(const NavigationArguments(route: '/home'));
   }
 }
