@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       enableLog: true,
       theme: AppTheme.lightThemeData,
-      initialRoute: '/home',
+      initialRoute: '/',
       getPages: [
         GetPage(
           name: '/',

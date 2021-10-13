@@ -20,13 +20,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with NavigationManager, SingleTickerProviderStateMixin, SystemNavigationUIOverlays {
   late final PageController _pageController;
-  late int _selectedIndex;
 
   @override
   void initState() {
     handleNavigationWithArgs(widget.presenter.navigateToWithArgsStream);
 
-    _selectedIndex = 0;
     _pageController = PageController(initialPage: 0);
 
     super.initState();

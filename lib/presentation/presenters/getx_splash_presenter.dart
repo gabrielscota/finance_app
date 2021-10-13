@@ -16,7 +16,7 @@ class GetxSplashPresenter extends GetxController with NavigationManager implemen
       final UserEntity account = await loadCurrentUser.load();
       navigateToWithArgs = account.uid.isNotEmpty
           ? const NavigationArguments(route: '/home')
-          : const NavigationArguments(route: '/login');
+          : const NavigationArguments(route: '/home');
     } catch (error) {
       navigateToWithArgs = const NavigationArguments(route: '/login');
     }
