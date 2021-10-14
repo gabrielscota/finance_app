@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import './strings/strings.dart';
+import './translations/translations.dart';
 
 mixin R {
   static Translation string = PtBr();

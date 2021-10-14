@@ -1,7 +1,0 @@
-{
-  "title": "Ola Mundo",
-  "@title": {
-    "description": "Title for the Demo application",
-    "type": "text"
-  }
-}
