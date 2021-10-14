@@ -2,25 +2,27 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../localization/app_localizations.dart';
 import '../ui/components/components.dart';
 import 'factories/factories.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
 
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final GlobalKey<NavigatorState> _globalKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
   MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      navigatorKey: _globalKey,
+      navigatorKey: _navigatorKey,
       title: 'Fi-Nance',
       darkTheme: AppTheme.darkThemeData,
       defaultTransition: Transition.cupertino,
@@ -28,6 +30,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       enableLog: true,
       theme: AppTheme.lightThemeData,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      onGenerateTitle: (BuildContext context) => AppLocalizations.instance.title,
       initialRoute: '/',
       getPages: [
         GetPage(
