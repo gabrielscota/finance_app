@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,8 @@ import 'factories/factories.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   await Firebase.initializeApp();
 
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Fi-Nance',
       darkTheme: AppTheme.darkThemeData,
       defaultTransition: Transition.cupertino,
-      transitionDuration: const Duration(milliseconds: 400),
+      transitionDuration: const Duration(milliseconds: 500),
       debugShowCheckedModeBanner: false,
       enableLog: true,
       theme: AppTheme.lightThemeData,
@@ -45,6 +48,8 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/',
           page: makeSplashPage,
+          transition: Transition.noTransition,
+          transitionDuration: const Duration(milliseconds: 0),
         ),
         GetPage(
           title: 'Home Page',
@@ -55,6 +60,21 @@ class MyApp extends StatelessWidget {
           title: 'Login Page',
           name: '/login',
           page: makeLoginPage,
+        ),
+        GetPage(
+          title: 'Login Biometric Page',
+          name: '/login/biometric',
+          page: makeLoginBiometricPage,
+        ),
+        GetPage(
+          title: 'Onboarding Page',
+          name: '/onboarding',
+          page: makeOnboardingPage,
+        ),
+        GetPage(
+          title: 'SignUp Page',
+          name: '/signup',
+          page: makeSignUpPage,
         ),
       ],
       unknownRoute: GetPage(

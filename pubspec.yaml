@@ -9,15 +9,17 @@ environment:
   sdk: ">=2.14.0 <3.0.0"
 
 dependencies:
+  animate_do: ^2.0.0
+  auto_size_text: ^3.0.0-nullsafety.0
+  cached_network_image: ^3.1.0
   cloud_firestore: ^2.5.3
-  concentric_transition: ^1.0.1+1
+  cpf_cnpj_validator: ^2.0.0
   equatable: ^2.0.3
   firebase_auth: ^3.1.3
   firebase_core: ^1.7.0
   fl_chart: ^0.40.0
   flutter:
     sdk: flutter
-  flutter_local_auth_invisible: ^2.0.0
   flutter_localizations:
     sdk: flutter
   flutter_secure_storage: ^4.2.1
@@ -29,8 +31,13 @@ dependencies:
   iconly: ^1.0.1
   intl: ^0.17.0
   liquid_pull_to_refresh: ^3.0.0
+  local_auth: ^1.1.8
   lottie: ^1.2.1
-  provider: ^6.0.1
+  mask_text_input_formatter: ^2.0.0
+  modal_bottom_sheet: ^2.0.0
+  particles_flutter: ^0.1.4
+  shimmer: ^2.0.0
+  smooth_page_indicator: ^1.0.0+2
   staggered_grid_view_flutter: ^0.0.4
 
 dev_dependencies:
@@ -48,6 +55,7 @@ flutter:
     - lib/ui/assets/icons/
     - lib/ui/assets/launcher_icon/
     - lib/ui/assets/splash/
+    - lib/ui/assets/illustrations/
 
 flutter_icons:
   # flutter pub run flutter_launcher_icons:main
@@ -63,24 +71,21 @@ flutter_native_splash:
   # flutter pub run flutter_native_splash:create
   # flutter pub run flutter_native_splash:remove
 
-  # color: "#FCFCFC"
-  background_image: "lib/ui/assets/splash/splash_light.png"
-  # image: lib/ui/assets/splash/splash_light.png
+  color: "#FCFCFC"
+  # background_image: "lib/ui/assets/splash/splash_light.png"
+  image: lib/ui/assets/splash/splash_light_foreground.png
 
-  # color_dark: "#303030"
-  background_image_dark: "lib/ui/assets/splash/splash_dark.png"
-  # image_dark: lib/ui/assets/splash/splash_dart.png
+  color_dark: "#303030"
+  # background_image_dark: "lib/ui/assets/splash/splash_dark.png"
+  image_dark: lib/ui/assets/splash/splash_dark_foreground.png
 
   android: true
   ios: true
   web: false
 
-  # To hide the notification bar, use the fullscreen parameter.  Has no affect in web since web
-  # has no notification bar.  Defaults to false.
-  # NOTE: Unlike Android, iOS will not automatically show the notification bar when the app loads.
-  #       To show the notification bar, add the following code to your Flutter app:
-  #       WidgetsFlutterBinding.ensureInitialized();
-  #       SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom, SystemUiOverlay.top]);
-  #fullscreen: true
+  # android_gravity: fill_horizontal
+  # ios_content_mode: scaleAspectFill
+
+  fullscreen: false
 
   # android12: true

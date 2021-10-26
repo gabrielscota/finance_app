@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:iconly/iconly.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../mixins/mixins.dart';
@@ -30,28 +30,31 @@ class LoginButton extends StatelessWidget with KeyboardManager {
                               presenter.auth();
                             }
                           : null,
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 48.0),
+                        alignment: Alignment.center,
+                        fixedSize: const Size(0.0, 56.0),
+                      ),
                       child: StreamBuilder<bool?>(
                         stream: presenter.isLoadingStream,
                         builder: (context, isLoadingSnapshot) {
                           if (isLoadingSnapshot.hasData && isLoadingSnapshot.data == true) {
-                            return SizedBox(
-                              height: 32.0,
-                              child: LottieBuilder.asset(
-                                Get.isDarkMode
-                                    ? 'lib/ui/assets/animations/loading_dark.json'
-                                    : 'lib/ui/assets/animations/loading_light.json',
-                                fit: BoxFit.fitHeight,
-                              ),
+                            return LottieBuilder.asset(
+                              Get.isDarkMode
+                                  ? 'lib/ui/assets/animations/loading_dark.json'
+                                  : 'lib/ui/assets/animations/loading_light.json',
+                              fit: BoxFit.fitHeight,
                             );
                           } else {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SvgPicture.asset(
-                                  'lib/ui/assets/icons/login.svg',
+                                Icon(
+                                  IconlyLight.login,
                                   color: Theme.of(context).colorScheme.onPrimary,
+                                  size: 32.0,
                                 ),
-                                const SizedBox(width: 10.0),
+                                const SizedBox(width: 12.0),
                                 Text(
                                   'Entrar',
                                   style: Theme.of(context).textTheme.headline6?.copyWith(

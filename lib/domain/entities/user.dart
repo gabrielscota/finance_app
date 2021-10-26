@@ -4,8 +4,10 @@ class UserEntity extends Equatable {
   final String uid;
   final String email;
   final String username;
+  final String cpf;
   final String avatar;
   final String name;
+  final bool useBiometric;
   final String createdAt;
   final String updatedAt;
   final String deletedAt;
@@ -14,8 +16,10 @@ class UserEntity extends Equatable {
     required this.uid,
     required this.email,
     required this.username,
+    required this.cpf,
     required this.avatar,
     required this.name,
+    required this.useBiometric,
     required this.createdAt,
     required this.updatedAt,
     required this.deletedAt,
@@ -26,8 +30,10 @@ class UserEntity extends Equatable {
         uid,
         email,
         username,
+        cpf,
         avatar,
         name,
+        useBiometric,
         createdAt,
         updatedAt,
         deletedAt,

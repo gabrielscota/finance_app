@@ -8,3 +8,7 @@ LoginPresenter makeGetxLoginPresenter() => GetxLoginPresenter(
       saveCurrentUser: makeLocalSaveCurrentUser(),
       validation: makeLoginValidation(),
     );
+
+LoginBiometricPresenter makeGetxLoginBiometricPresenter() => GetxLoginBiometricPresenter(
+      loadCurrentUser: makeLocalLoadCurrentUser(),
+    );

@@ -1,13 +1,13 @@
-import 'dart:math' as math;
-
 import '../../domain/entities/entities.dart';
 
 class RemoteUserSignUpModel {
   final String uid;
   final String email;
   final String username;
+  final String cpf;
   final String avatar;
   final String name;
+  final bool useBiometric;
   final String createdAt;
   final String updatedAt;
   final String deletedAt;
@@ -16,8 +16,10 @@ class RemoteUserSignUpModel {
     required this.uid,
     required this.email,
     required this.username,
+    required this.cpf,
     required this.avatar,
     required this.name,
+    required this.useBiometric,
     required this.createdAt,
     required this.updatedAt,
     required this.deletedAt,
@@ -28,8 +30,10 @@ class RemoteUserSignUpModel {
       uid: entity.uid,
       email: entity.email,
       username: entity.username,
+      cpf: entity.cpf,
       avatar: entity.avatar,
       name: entity.name,
+      useBiometric: entity.useBiometric,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
       deletedAt: entity.deletedAt,
@@ -41,8 +45,10 @@ class RemoteUserSignUpModel {
       uid: uid,
       email: entity.email,
       username: entity.username,
+      cpf: entity.cpf,
       avatar: entity.avatar,
       name: entity.name,
+      useBiometric: entity.useBiometric,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
       deletedAt: entity.deletedAt,
@@ -50,20 +56,24 @@ class RemoteUserSignUpModel {
   }
 
   factory RemoteUserSignUpModel.fromEntityWithGoogleSignUpParams(
-    UserEntity entity,
     String uid,
     String email,
+    String avatar,
     String name,
+    String createdAt,
+    String updatedAt,
   ) {
     return RemoteUserSignUpModel(
       uid: uid,
       email: email,
-      username: '${email.split('@')[0]}${math.Random().nextInt(1000)}',
-      avatar: entity.avatar,
+      username: email.split('@')[0],
+      cpf: '',
+      avatar: avatar,
       name: name,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt,
-      deletedAt: entity.deletedAt,
+      useBiometric: false,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      deletedAt: '',
     );
   }
 
@@ -71,8 +81,10 @@ class RemoteUserSignUpModel {
         'uid': uid,
         'email': email,
         'username': username,
+        'cpf': cpf,
         'avatar': avatar,
         'name': name,
+        'useBiometric': useBiometric,
         'createdAt': createdAt,
         'updatedAt': updatedAt,
         'deletedAt': deletedAt,

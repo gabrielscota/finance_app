@@ -18,6 +18,7 @@ class GoogleLoginButton extends StatelessWidget {
           primary: Theme.of(context).colorScheme.surface,
           elevation: 2.0,
           shadowColor: Theme.of(context).colorScheme.onSurface.withAlpha(20),
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

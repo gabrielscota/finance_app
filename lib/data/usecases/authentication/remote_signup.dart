@@ -16,17 +16,19 @@ class RemoteSignUp implements UserSignUp {
   });
 
   @override
-  Future<String> signUp({required SignUpParams params}) async {
+  Future<Map<String, dynamic>> signUp({required SignUpParams params}) async {
     try {
       final UserCredential userCredential = await firebaseAuthentication.signUpWithEmailAndPassword(
         email: params.email,
         password: params.password,
       );
       final CollectionReference users = cloudFirestore.getCollection(collectionName: 'users');
-      final Map<String, dynamic> remoteUser =
-          RemoteUserSignUpModel.fromEntityWithUid(params.user, userCredential.user!.uid).toJson();
+      final Map<String, dynamic> remoteUser = RemoteUserSignUpModel.fromEntityWithUid(
+        params.user,
+        userCredential.user!.uid,
+      ).toJson();
       users.doc(userCredential.user?.uid).set(remoteUser);
-      return userCredential.user?.uid ?? '';
+      return remoteUser;
     } on FirebaseAuthError catch (error) {
       switch (error) {
         case FirebaseAuthError.weakPassword:

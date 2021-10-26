@@ -16,24 +16,30 @@ class RemoteGoogleSignIn implements UserGoogleSignIn {
   });
 
   @override
-  Future<String> authWithGoogle({required GoogleSignUpParams params}) async {
+  Future<Map<String, dynamic>> authWithGoogle() async {
     try {
+      Map<String, dynamic> remoteUser = {};
       final UserCredential? userCredential = await firebaseAuthentication.signInWithGoogle();
       if (userCredential != null) {
         final CollectionReference users = cloudFirestore.getCollection(collectionName: 'users');
         final QuerySnapshot result = await users.where('uid', isEqualTo: userCredential.user?.uid).limit(1).get();
         if (result.docs.isEmpty) {
-          final Map<String, dynamic> remoteUser = RemoteUserSignUpModel.fromEntityWithGoogleSignUpParams(
-            params.user,
+          remoteUser = RemoteUserSignUpModel.fromEntityWithGoogleSignUpParams(
             userCredential.user!.uid,
             userCredential.user!.email!,
+            userCredential.user!.photoURL!,
             userCredential.user!.displayName!,
+            DateTime.now().toIso8601String(),
+            DateTime.now().toIso8601String(),
           ).toJson();
           users.doc(userCredential.user?.uid).set(remoteUser);
+          return remoteUser;
+        } else {
+          return result.docs.first.data() as Map<String, dynamic>;
         }
+      } else {
+        return {};
       }
-
-      return userCredential?.user?.uid ?? '';
     } on FirebaseAuthError {
       throw DomainError.unexpected;
     }

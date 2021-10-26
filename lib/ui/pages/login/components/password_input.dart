@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iconly/iconly.dart';
 
 import '../login.dart';
 
@@ -68,11 +68,10 @@ class _PasswordInputState extends State<PasswordInput> {
                         _showPassword = !_showPassword;
                       });
                     },
-                    child: SvgPicture.asset(
-                      _showPassword ? 'lib/ui/assets/icons/show.svg' : 'lib/ui/assets/icons/hide.svg',
-                      color: Theme.of(context).colorScheme.onBackground.withAlpha(200),
-                      width: 28.0,
-                      height: 28.0,
+                    child: Icon(
+                      _showPassword ? IconlyLight.show : IconlyLight.hide,
+                      color: Theme.of(context).colorScheme.primaryVariant,
+                      size: 32.0,
                     ),
                   ),
                 ),

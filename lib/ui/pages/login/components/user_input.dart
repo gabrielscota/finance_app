@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iconly/iconly.dart';
 
 import '../login.dart';
 
@@ -75,11 +75,10 @@ class _UserInputState extends State<UserInput> {
                         _suffixIsVisible = false;
                       });
                     },
-                    child: SvgPicture.asset(
-                      'lib/ui/assets/icons/close_square.svg',
-                      color: Theme.of(context).colorScheme.onBackground.withAlpha(200),
-                      width: 28.0,
-                      height: 28.0,
+                    child: Icon(
+                      IconlyLight.close_square,
+                      color: Theme.of(context).colorScheme.primaryVariant,
+                      size: 32.0,
                     ),
                   ),
                 ),

@@ -1,6 +1,7 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
-import '../../domain/entities/entities.dart';
 import '../../domain/helpers/helpers.dart';
 import '../../domain/usecases/usecases.dart';
 import '../../ui/helpers/helpers.dart';
@@ -30,7 +31,7 @@ class GetxLoginPresenter extends GetxController
   Stream<NavigationArguments?> get navigateToHomeWithArgsStream => _navigateToHomeWithArgs.stream;
   bool get isLoadingGoogleAuthentication => _isLoadingGoogleAuthentication.value;
 
-  set isLoadingGoogleAuthentication(bool value) => _isLoadingGoogleAuthentication.subject.add(value);
+  set isLoadingGoogleAuthentication(bool value) => _isLoadingGoogleAuthentication.value = value;
 
   GetxLoginPresenter({
     required this.validation,
@@ -64,6 +65,8 @@ class GetxLoginPresenter extends GetxController
         return UIError.requiredField;
       case ValidationError.noError:
         return UIError.noError;
+      default:
+        return UIError.noError;
     }
   }
 
@@ -82,7 +85,7 @@ class GetxLoginPresenter extends GetxController
       final userUID = await authentication.auth(
         params: AuthenticationParams(email: _email, password: _password),
       );
-      await saveCurrentUser.save(userUID: userUID);
+      await saveCurrentUser.save(userJson: userUID);
       navigateToWithArgs = const NavigationArguments(route: '/home');
     } on DomainError catch (error) {
       switch (error) {
@@ -103,22 +106,9 @@ class GetxLoginPresenter extends GetxController
       mainError = UIError.noError;
       isLoadingGoogleAuthentication = true;
       await Future.delayed(const Duration(seconds: 2));
-      final String userUID = await authenticationWithGoogle.authWithGoogle(
-        params: GoogleSignUpParams(
-          user: UserEntity(
-            uid: '',
-            email: '',
-            username: '',
-            avatar: '',
-            name: '',
-            createdAt: DateTime.now().toIso8601String(),
-            updatedAt: DateTime.now().toIso8601String(),
-            deletedAt: '',
-          ),
-        ),
-      );
-      if (userUID != '') {
-        await saveCurrentUser.save(userUID: userUID);
+      final Map<String, dynamic> user = await authenticationWithGoogle.authWithGoogle();
+      if (user['uid'] != null && (user['uid'].toString()).isNotEmpty) {
+        await saveCurrentUser.save(userJson: jsonEncode(user));
         isLoadingGoogleAuthentication = false;
         navigateToWithArgs = const NavigationArguments(route: '/home');
       }
@@ -133,6 +123,6 @@ class GetxLoginPresenter extends GetxController
   }
 
   void goToHomePage() {
-    _navigateToHomeWithArgs.subject.add(const NavigationArguments(route: '/home'));
+    _navigateToHomeWithArgs.value = const NavigationArguments(route: '/home');
   }
 }

@@ -40,10 +40,10 @@ mixin AppTheme {
     onPrimary: Color(0xFFFCFCFC),
     onSecondary: Color(0xFFFCFCFC),
     onSurface: Color(0xFF303030),
-    primary: Color(0xFF31844A),
-    primaryVariant: Color(0xFF63B476),
-    secondary: Color(0xFF367E9B),
-    secondaryVariant: Color(0xFF6AADCC),
+    primary: Color(0xFF303030),
+    primaryVariant: Color(0xFF595959),
+    secondary: Color(0xFF31844A),
+    secondaryVariant: Color(0xFF63B476),
     surface: Color(0xFFFFFFFF),
   );
 
@@ -56,10 +56,10 @@ mixin AppTheme {
     onPrimary: Color(0xFF303030),
     onSecondary: Color(0xFF303030),
     onSurface: Color(0xFFFCFCFC),
-    primary: Color(0xFF31844A),
-    primaryVariant: Color(0xFF63B476),
-    secondary: Color(0xFF367E9B),
-    secondaryVariant: Color(0xFF6AADCC),
+    primary: Color(0xFF303030),
+    primaryVariant: Color(0xFF595959),
+    secondary: Color(0xFF31844A),
+    secondaryVariant: Color(0xFF63B476),
     surface: Color(0xFF383838),
   );
 
@@ -145,7 +145,7 @@ mixin AppTheme {
       fontWeight: _regular,
     ),
     headline6: GoogleFonts.poppins(
-      fontSize: 19,
+      fontSize: 20,
       fontWeight: _medium,
       letterSpacing: 0.15,
     ),

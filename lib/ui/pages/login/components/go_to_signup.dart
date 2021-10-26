@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../helpers/helpers.dart';
+import '../../pages.dart';
 
 class GoToSignUp extends StatelessWidget {
-  const GoToSignUp({Key? key}) : super(key: key);
+  final LoginPresenter presenter;
+
+  const GoToSignUp({Key? key, required this.presenter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,12 @@ class GoToSignUp extends StatelessWidget {
           ),
           const SizedBox(width: 4.0),
           InkWell(
-            onTap: () {},
+            onTap: presenter.goToSignUpPage,
             splashColor: Colors.transparent,
             child: Text(
               R.string.addAccount,
               style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
             ),
           ),

@@ -1,3 +1,3 @@
 abstract class SaveCurrentUser {
-  Future<void> save({required String userUID});
+  Future<void> save({required String userJson});
 }

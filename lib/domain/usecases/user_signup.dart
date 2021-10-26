@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import '../entities/entities.dart';
 
 abstract class UserSignUp {
-  Future<String> signUp({required SignUpParams params});
+  Future<Map<String, dynamic>> signUp({required SignUpParams params});
 }
 
 class SignUpParams extends Equatable {

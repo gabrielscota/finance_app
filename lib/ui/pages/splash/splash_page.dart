@@ -30,28 +30,10 @@ class _SplashPageState extends State<SplashPage> with NavigationManager, SystemN
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: Get.isDarkMode
-                ? [
-                    const Color(0xFF303030),
-                    const Color(0xFF131313),
-                  ]
-                : [
-                    const Color(0xFFFCFCFC),
-                    const Color(0xFFAFAFAF),
-                  ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 105),
         child: Image.asset(
           Get.isDarkMode
               ? 'lib/ui/assets/splash/splash_dark_foreground.png'
               : 'lib/ui/assets/splash/splash_light_foreground.png',
-          width: 329,
-          height: 301,
         ),
       ),
     );
